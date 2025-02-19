@@ -7,25 +7,22 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { Layout } from "~/components/layout";
-import "~/tailwind.css";
 
-// Remix が CSS を配信できるように links() を設定
-export const links: LinksFunction = () => [];
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: "/styles/tailwind.css" },
+];
 
 export default function App() {
   return (
-    <html lang="ja">
+    <html lang="ja" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        <Layout>
-          <Outlet />
-        </Layout>
+      <body className="h-full">
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

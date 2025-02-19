@@ -9,10 +9,22 @@ declare module "@remix-run/node" {
 }
 
 export default defineConfig({
+  server: {
+    port: 5173,
+    host: '0.0.0.0',
+  },
   plugins: [
     remix({
-      serverModuleFormat: "esm",
+      future: {
+        v3_fetcherPersist: true,
+        v3_relativeSplatPath: true,
+        v3_throwAbortReason: true,
+        v3_singleFetch: true,
+      },
     }),
     tsconfigPaths(),
   ],
+  optimizeDeps: {
+    include: ['@remix-run/react', '@remix-run/server-runtime'],
+  },
 });
