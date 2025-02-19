@@ -1,4 +1,4 @@
-import type { LinksFunction } from '@remix-run/node';
+import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -6,12 +6,16 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from '@remix-run/react';
-import styles from './tailwind.css';
-import { Layout } from '~/components/layout';
+} from "@remix-run/react";
 
+// ここが Remix ビルドの要：app/tailwind.css を import
+import styles from "./tailwind.css";
+
+import { Layout } from "~/components/layout";
+
+// Remix が CSS を配信できるように links() を設定
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: styles },
+  { rel: "stylesheet", href: styles },
 ];
 
 export default function App() {
