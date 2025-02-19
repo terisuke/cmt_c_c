@@ -73,12 +73,12 @@ module.exports = {
         "import/resolver": {
           node: {
             extensions: [".ts", ".tsx", ".js", ".jsx"],
-            moduleDirectory: ["node_modules", "app"]
+            paths: ["app"]
           },
           typescript: {
             alwaysTryTypes: true,
             project: "./tsconfig.json",
-            moduleDirectory: ["node_modules", "app"]
+            paths: ["app"]
           },
         },
       },

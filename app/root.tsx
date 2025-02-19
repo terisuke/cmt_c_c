@@ -7,9 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
-// ここが Remix ビルドの要：app/tailwind.css を import
-import styles from "./tailwind.css";
+import styles from "./tailwind.css"; // Remixビルドで読み込む
 
 import { Layout } from "~/components/layout";
 

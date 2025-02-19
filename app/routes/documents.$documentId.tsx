@@ -73,7 +73,12 @@ export default function DocumentDetail() {
             <Button variant="outline" icon={History} size="sm">
               履歴
             </Button>
-            <Button variant="outline" icon={Edit2} size="sm">
+            <Button 
+              variant="outline" 
+              icon={Edit2} 
+              size="sm"
+              to={`/documents/${document.id}/edit`}
+            >
               編集
             </Button>
             <Button variant="outline" icon={Trash2} size="sm" 
