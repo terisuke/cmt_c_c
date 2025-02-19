@@ -7,14 +7,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import styles from "./tailwind.css"; // Remixビルドで読み込む
-
 import { Layout } from "~/components/layout";
+import "~/tailwind.css";
 
 // Remix が CSS を配信できるように links() を設定
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-];
+export const links: LinksFunction = () => [];
 
 export default function App() {
   return (
