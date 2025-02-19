@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/prop-types */
 import { FileText, ChevronRight } from 'lucide-react';
 import { Link } from '@remix-run/react';
 import type { Document } from '~/utils/types';

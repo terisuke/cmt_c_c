@@ -12,6 +12,7 @@ export interface Document {
   updatedAt: string;
   contractor?: string;
   relatedDocuments?: string[];
+  content?: string;
 }
 
 export interface Project {

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // app/components/documents/DocumentFilter.tsx
 import { Folder } from 'lucide-react';
 import { DOCUMENT_TYPES } from '~/utils/constants';
