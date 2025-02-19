@@ -5,26 +5,9 @@ import { useState } from 'react';
 import { Button, Input } from '~/components/common';
 import { DocumentCard } from '~/components/documents/DocumentCard';
 import { DocumentFilter } from '~/components/documents/DocumentFilter';
-import type { Document } from '~/utils/types';
-
-// モックデータ（後でデータベースから取得するように変更）
-const mockDocuments: Document[] = [
-  {
-    id: '1',
-    title: '◆○○○邸工事見積（マンション内改修工事）',
-    type: 'estimate',
-    projectCode: 'P2024-001',
-    amount: '730,000',
-    status: 'active',
-    createdAt: '2024-02-20',
-    updatedAt: '2024-02-20',
-    contractor: '株式会社○○工務店'
-  },
-  // 他のモックデータ...
-];
+import { mockDocuments } from '~/mocks/documents';
 
 export async function loader() {
-  // TODO: 実際のデータベースからデータを取得するように変更
   return json({ documents: mockDocuments });
 }
 

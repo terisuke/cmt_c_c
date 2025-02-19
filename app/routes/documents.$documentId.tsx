@@ -10,6 +10,7 @@ import {
   Trash2
 } from 'lucide-react';
 import { Button } from '~/components/common';
+import { mockDocuments } from '~/mocks/documents';
 import { getStatusLabel, getStatusStyle } from '~/utils/documentHelpers';
 import type { Document } from '~/utils/types';
 
@@ -18,35 +19,22 @@ interface LoaderData {
 }
 
 export async function loader({ params }: { params: { documentId: string } }) {
-  // TODO: 実際のデータベースからデータを取得するように変更
-  const mockDocument: Document = {
-    id: params.documentId,
-    title: '◆○○○邸工事見積（マンション内改修工事）',
-    type: 'estimate',
-    projectCode: 'P2024-001',
-    amount: '730,000',
-    status: 'active',
-    createdAt: '2024-02-20',
-    updatedAt: '2024-02-20',
-    contractor: '株式会社○○工務店',
-    content: `
-      1. 工事概要
-      - マンション内装改修工事
-      - 工期：2024年3月1日〜2024年4月30日
-      
-      2. 見積金額
-      - 本体工事：650,000円
-      - 諸経費：80,000円
-      - 合計：730,000円（税抜）
-    `
-  };
+  const document = mockDocuments.find(doc => doc.id === params.documentId);
 
-  return json({ document: mockDocument });
+  if (!document) {
+    throw new Response("文書が見つかりません", { status: 404 });
+  }
+
+  return json({ document });
 }
 
 export default function DocumentDetail() {
   const { document } = useLoaderData<LoaderData>();
   const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);  // ブラウザの履歴を1つ戻る
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -55,7 +43,7 @@ export default function DocumentDetail() {
         <Button 
           variant="secondary" 
           icon={ArrowLeft}
-          onClick={() => navigate(-1)}
+          onClick={handleBack}
           size="sm"
         >
           戻る
@@ -144,9 +132,22 @@ export default function DocumentDetail() {
           {/* 関連文書（オプション） */}
           <div className="bg-white rounded-lg shadow p-6 mt-6">
             <h2 className="text-lg font-medium text-gray-700 mb-4">関連文書</h2>
-            <div className="text-sm text-gray-500">
-              関連する文書はありません
-            </div>
+            {document.relatedDocuments && document.relatedDocuments.length > 0 ? (
+              <ul className="space-y-2">
+                {document.relatedDocuments.map(relatedId => {
+                  const relatedDoc = mockDocuments.find(doc => doc.id === relatedId);
+                  return relatedDoc ? (
+                    <li key={relatedId} className="text-sm text-gray-600">
+                      {relatedDoc.title}
+                    </li>
+                  ) : null;
+                })}
+              </ul>
+            ) : (
+              <div className="text-sm text-gray-500">
+                関連する文書はありません
+              </div>
+            )}
           </div>
         </div>
       </div>
