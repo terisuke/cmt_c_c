@@ -63,24 +63,20 @@ module.exports = {
       plugins: ["@typescript-eslint", "import"],
       parser: "@typescript-eslint/parser",
       parserOptions: {
-        // ここでtsconfig.jsonへのパスを明示
         project: ["./tsconfig.json"],
-        // tsconfig.json が存在するルートディレクトリを指定
         tsconfigRootDir: __dirname,
       },
       settings: {
-        "import/internal-regex": "^~/",
         "import/resolver": {
-          node: {
-            extensions: [".ts", ".tsx", ".js", ".jsx"],
-            paths: ["app"]
-          },
           typescript: {
             alwaysTryTypes: true,
-            project: "./tsconfig.json",
-            paths: ["app"]
+            project: "./tsconfig.json"
           },
-        },
+          node: {
+            extensions: [".ts", ".tsx"],
+            moduleDirectory: ["node_modules", "app"]
+          }
+        }
       },
       extends: [
         "plugin:@typescript-eslint/recommended",
